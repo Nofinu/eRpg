@@ -1,0 +1,10 @@
+.FormLog{
+  background-color: black;
+  width: 50%;
+  margin: 25px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; 
+  color: white;
+  padding: 15px;
+}

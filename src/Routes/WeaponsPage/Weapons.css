@@ -1,0 +1,38 @@
+.containerWeapons{
+  background-color: black;
+  width: 50%;
+  margin: 25px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; 
+  color: white;
+  padding: 15px;
+}
+.containerWeapons>hr{
+  width: 100%;
+}
+.containerWeapons>div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between  ;
+  align-items: center;
+}
+.LinkWeapons{
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.FormWeapon{
+  background-color: black;
+  width: 50%;
+  margin: 25px auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; 
+  color: white;
+  padding: 15px;
+}
+.FormWeapon>hr{
+  width: 100%;
+}
