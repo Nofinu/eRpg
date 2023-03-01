@@ -1,16 +1,32 @@
 import { useRef } from "react"
-import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
+import { AddWeapons, EditWeapons, SuprWeapons } from "../WeaponSlice"
 
 
-export const FormAddWeapons=()=>{
+export const FormWeapons=()=>{
+
+  const dispatch=useDispatch()
+  const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
+
+  const mode = searchParams.get('mode')
+  const { id } = useParams()
 
   const nameRef= useRef()
   const selectDiceRef=useRef()
   const damageTypeRef=useRef()
 
-  const navigate = useNavigate()
+  const weapons = useSelector(state=>state.weapons.weapons)
+  let weaponsTarget={name:"",selectDice:"",damageType:""}
+  
+  if(mode !== "Add"){
+    weaponsTarget = weapons.find(weapon=>weapon.id === id)
+  }
 
-  const onSubmitHanler=(e)=>{
+
+
+  const onSubmitHanler=async (e)=>{
     e.preventDefault()
 
     const weapon = {
@@ -18,7 +34,15 @@ export const FormAddWeapons=()=>{
       selectDice: selectDiceRef.current.value,
       damageType: damageTypeRef.current.value
     }
-
+    if(mode==="Add"){
+      await dispatch(AddWeapons(weapon))
+    }
+    else if(mode==="Edit"){
+      await dispatch(EditWeapons({id:weaponsTarget.id,...weapon}))
+    }
+    else{
+      await dispatch(SuprWeapons(weaponsTarget.id))
+    }
     navigate('/weapons')
   }
 
@@ -27,10 +51,10 @@ export const FormAddWeapons=()=>{
       <h2>Add A Weapon </h2>
       <hr />
       <label htmlFor="Name">Weapon Name :</label>
-      <input type="text" id="Name" ref={nameRef}/>
+      <input type="text" id="Name" ref={nameRef} defaultValue={mode === "Add"?"":weaponsTarget?weaponsTarget.name:""} disabled={mode === "Supr"?true:false}/>
 
       <label htmlFor="SelectDice">SelectDice :</label>
-      <select name="SelectDice" id="SelectDice" ref={selectDiceRef}>
+      <select name="SelectDice" id="SelectDice" ref={selectDiceRef} defaultValue={mode==="Add"?"":weaponsTarget?weaponsTarget.selectDice:""} disabled={mode === "Supr"?true:false}>
         <option value="4">d4</option>
         <option value="6">d6</option>
         <option value="8">d8</option>
@@ -39,7 +63,7 @@ export const FormAddWeapons=()=>{
       </select>
 
       <label htmlFor="DamageType">Damage type :</label>
-      <select name="DamageType" id="DamageType" ref={damageTypeRef}>
+      <select name="DamageType" id="DamageType" ref={damageTypeRef} defaultValue={mode==="Add"?"":weaponsTarget?weaponsTarget.damageType:""} disabled={mode === "Supr"?true:false}>
         <optgroup label="Physical Damage">
           <option value="bludgeoning">bludgeoning</option>
           <option value="piercing">piercing</option>
@@ -59,7 +83,9 @@ export const FormAddWeapons=()=>{
           <option value="radiant">radiant</option>
         </optgroup>
       </select>
-      <button>Add</button>
+      <div className="FormWeaponButtonContainer">
+        <button className={`Form${mode}`}>{mode}</button>
+      </div>
     </form>
   )
 }

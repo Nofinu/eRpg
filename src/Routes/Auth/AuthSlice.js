@@ -54,32 +54,44 @@ const AuthSlice= createSlice({
     removeUser(state) {
       state.user = null
       localStorage.removeItem('token')
-    }
+    },
   },
   extraReducers: (builder) => {
-
+    
+    builder.addCase(signIn.pending, (state) => {
+      state.user = null
+      state.isLoading = true
+      state.error = null
+    })
     builder.addCase(signIn.fulfilled, (state, action) => {
       state.isLoading = false
+      state.error = null
       state.user = action.payload
       localStorage.setItem('token', action.payload.idToken)
     })
-    // builder.addCase(signIn.rejected, (state, action) => {
-    //   state.isLoading = false
-    //   state.error = action.payload
-    //   console.error(state.error)
-    // })
+    builder.addCase(signIn.rejected, (state) => {
+      state.error="error"
+      state.isLoading = false
+      alert("Incorect Email or Password")
+    })
 
+    builder.addCase(signUp.pending, (state) => {
+      state.user = null
+      state.isLoading = true
+      state.error = null
+    })
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.isLoading = false
+      state.error = null
       state.user = action.payload
       localStorage.setItem('token', action.payload.idToken)
     })
 
-    // builder.addCase(signUp.rejected, (state, action) => {
-    //   state.isLoading = false
-    //   state.error = action.payload
-    //   console.error(state.error)
-    // })
+    builder.addCase(signUp.rejected, (state) => {
+      state.error="error"
+      state.isLoading = false
+      alert("Incorect Email or Password")
+    })
   }
 })
 

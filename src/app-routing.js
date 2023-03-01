@@ -4,7 +4,7 @@ import ProtectedRoute from "./Component/ProtectedRoute";
 import { LogPage } from "./Routes/Auth/LogPage";
 import { ErrorPage } from "./Routes/ErrorPage/ErrorPage";
 import { HomePage } from "./Routes/HomePage/HomePage";
-import { FormAddWeapons } from "./Routes/WeaponsPage/FormAddWeapons/FormAddWeapons";
+import { FormWeapons } from "./Routes/WeaponsPage/FormAddWeapons/FormWeapons";
 import { WeaponsPage } from "./Routes/WeaponsPage/WeaponsPage";
 
 
@@ -27,8 +27,8 @@ export const router = createBrowserRouter([
         element:<ProtectedRoute><WeaponsPage/></ProtectedRoute>
       },
       {
-        path:"/weapons/addweaponsform",
-        element:<ProtectedRoute><FormAddWeapons/></ProtectedRoute>
+        path:"/weapons/:id",
+        element:<ProtectedRoute><FormWeapons/></ProtectedRoute>
       }
     ]
   }

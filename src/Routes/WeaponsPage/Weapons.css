@@ -11,7 +11,7 @@
 .containerWeapons>hr{
   width: 100%;
 }
-.containerWeapons>div{
+.headerContainerWeapon{
   display: flex;
   flex-direction: row;
   justify-content: space-between  ;
@@ -35,4 +35,29 @@
 }
 .FormWeapon>hr{
   width: 100%;
+}
+
+.FormWeaponButtonContainer{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.FormAdd,.FormEdit,.FormSupr{
+  width: 80px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.FormAdd{
+  background-color: rgb(11, 109, 32);
+  color: white;
+}
+.FormEdit{
+  background-color: rgb(179, 125, 10);
+  color: white;
+}
+.FormSupr{
+  background-color: rgb(167, 12, 12);
+  color: white;
 }

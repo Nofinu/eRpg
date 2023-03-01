@@ -1,12 +1,10 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { signIn, signUp } from "./AuthSlice"
 import "./Log.css"
 
 export const LogPage=()=>{
-
-  const user = useSelector(state => state.auth.user)
 
   const dispatch = useDispatch()
   const navigate =useNavigate()
@@ -16,6 +14,9 @@ export const LogPage=()=>{
 
   const emailRef = useRef()
   const passwordRef = useRef()
+
+  const user =useSelector(state=>state.auth.user)
+
 
   const onSubmitHandler=async (e)=>{
     e.preventDefault()
@@ -31,11 +32,13 @@ export const LogPage=()=>{
     else{
       await dispatch(signUp(userEntry))
     }
+  }
 
+  useEffect(()=>{
     if(user){
       navigate("/")
     }
-  }
+  },[user,navigate])
 
   return(
     <form className="FormLog" onSubmit={onSubmitHandler}>

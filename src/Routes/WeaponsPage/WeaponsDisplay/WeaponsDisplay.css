@@ -1,0 +1,40 @@
+.divWeaponDisplay{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  border: solid rgb(13, 120, 170) 1px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 15px;
+
+}
+
+.divWeaponDisplay>hr{
+  width: 100%;
+}
+.divWeaponDisplay>p{
+  margin: 5px 0 5px 0;
+}
+.divWeaponDisplay>h2{
+  margin: 8px 0 5px 0;
+}
+
+.divWeaponDisplayHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between ;
+  align-items: center;
+  width: 100%;
+}
+.EditLink{
+  color: rgb(199, 165, 16);
+  border: solid rgb(199, 165, 16) 1px;
+  border-radius: 5px;
+  padding: 3px;
+}
+.SuprLink{
+  color: rgb(168, 17, 17);
+  border: solid rgb(168, 17, 17) 1px;
+  border-radius: 5px;
+  padding: 3px;
+}
