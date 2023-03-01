@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import ProtectedRoute from "./Component/ProtectedRoute";
 import { LogPage } from "./Routes/Auth/LogPage";
+import { CharaClassesPage } from "./Routes/CharaClassesPages/CharaClassesPage";
+import { FormCharaClasses } from "./Routes/CharaClassesPages/FormCharaClasses/FormCharaClasses";
 import { ErrorPage } from "./Routes/ErrorPage/ErrorPage";
 import { HomePage } from "./Routes/HomePage/HomePage";
 import { FormWeapons } from "./Routes/WeaponsPage/FormAddWeapons/FormWeapons";
@@ -29,6 +31,14 @@ export const router = createBrowserRouter([
       {
         path:"/weapons/:id",
         element:<ProtectedRoute><FormWeapons/></ProtectedRoute>
+      },
+      {
+        path:"/characlasses",
+        element:<ProtectedRoute><CharaClassesPage/></ProtectedRoute>
+      },
+      {
+        path:"/characlasses/:id",
+        element:<ProtectedRoute><FormCharaClasses/></ProtectedRoute>
       }
     ]
   }

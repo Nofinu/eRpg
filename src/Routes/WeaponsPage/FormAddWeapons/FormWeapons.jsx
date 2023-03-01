@@ -55,11 +55,13 @@ export const FormWeapons=()=>{
 
       <label htmlFor="SelectDice">SelectDice :</label>
       <select name="SelectDice" id="SelectDice" ref={selectDiceRef} defaultValue={mode==="Add"?"":weaponsTarget?weaponsTarget.selectDice:""} disabled={mode === "Supr"?true:false}>
-        <option value="4">d4</option>
-        <option value="6">d6</option>
-        <option value="8">d8</option>
-        <option value="10">d10</option>
-        <option value="12">d12</option>
+        <option value="4">D4</option>
+        <option value="6">D6</option>
+        <option value="8">D8</option>
+        <option value="10">D10</option>
+        <option value="12">D12</option>
+        <option value="20">D20</option>
+        <option value="100">D100</option>
       </select>
 
       <label htmlFor="DamageType">Damage type :</label>

@@ -17,10 +17,20 @@
   justify-content: space-between  ;
   align-items: center;
 }
+.headerContainerWeapon>h2{
+  margin: 5px 0 3px 0;
+}
 .LinkWeapons{
   text-decoration: none;
   color: white;
   margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: solid white 1px;
+  padding: 4px;
+  border-radius: 5px;
 }
 
 .FormWeapon{
@@ -52,6 +62,7 @@
 .FormAdd{
   background-color: rgb(11, 109, 32);
   color: white;
+  padding: 3px;
 }
 .FormEdit{
   background-color: rgb(179, 125, 10);

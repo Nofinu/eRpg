@@ -32,7 +32,7 @@ function App() {
             <div className="Dropdown">
               <p onClick={OpenDropDown} className='cliclDropDown'>Player <b className='triangle'>{DropDown? '\u25B6':'\u25BC'}</b></p>
               {
-                DropDown & user!== null? <div className='dropDownContent'><Link className='LinkDorpDown'>Characters</Link> <Link className='LinkDorpDown'>Classes</Link> <Link to="/weapons" className='LinkDorpDown'>Weapons</Link></div>
+                DropDown & user!== null? <div onClick={OpenDropDown} className='dropDownContent'><Link className='LinkDorpDown'>Characters</Link> <Link className='LinkDorpDown' to="/characlasses">Classes</Link> <Link to="/weapons" className='LinkDorpDown'>Weapons</Link></div>
                 :
                 <div></div>
               }

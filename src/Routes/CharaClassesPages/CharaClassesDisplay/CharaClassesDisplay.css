@@ -1,0 +1,22 @@
+
+.divCharaClasseDisplay{
+  border: solid white 2px;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 10px;
+}
+.divCharaClasseDisplayHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.divCharaClasseDisplayHeader>h2{
+  margin: 5px 0 3px 0;
+}
+.divCharaClasseDisplayHeader>div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
