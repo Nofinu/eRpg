@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { useSelector } from "react-redux"
 
@@ -6,20 +6,17 @@ import { useSelector } from "react-redux"
 export const FormSelectWeapons =(props)=>{
 
   const WeaponsList=useSelector(state=>state.weapons.weapons)
+  const [isLoad,setIsLoad]=useState(false)
 
-  // useEffect(()=>{
-  
-  //   WeaponsList.forEach(weapon => {
-  //     const id=`${props.id}${weapon.damageType}`
-  //     console.log("testid",id === `${props.id}piercing`)
-  //     createPortal(<option value={weapon.name}><b>{weapon.name}</b>  <b>D{weapon.selectDice}</b></option>,document.getElementById(id))
-  //   });
-  // },[])
+  useEffect(()=>{
+    setIsLoad(true)
+  },[isLoad])
 
   return(
-    <div>
-      <select name="FormWeapons">
-      {/* <optgroup id={`${props.id}bludgeoning`} label="bludgeoning"></optgroup>
+    <div className="characterSelectWeaponContainer">
+    <select id={`select${props.id}`} className="characterSelectWeapon">
+      <option value="">Select a Weapon</option>
+      <optgroup id={`${props.id}bludgeoning`} label="bludgeoning"></optgroup>
       <optgroup id={`${props.id}piercing`} label="piercing"></optgroup>
       <optgroup id={`${props.id}slashing`} label="slashing"></optgroup>
       <optgroup id={`${props.id}cold`} label="cold"></optgroup>
@@ -30,11 +27,13 @@ export const FormSelectWeapons =(props)=>{
       <optgroup id={`${props.id}poison`} label="poison"></optgroup>
       <optgroup id={`${props.id}psychic`} label="psychic"></optgroup>
       <optgroup id={`${props.id}force`} label="force"></optgroup>
-      <optgroup id={`${props.id}radiant`} label="radiant"></optgroup> */}
+      <optgroup id={`${props.id}radiant`} label="radiant"></optgroup>
       {
-        WeaponsList&& WeaponsList.map(weapon=><option key={weapon.id}><b>{weapon.name}</b> <b>D{weapon.selectDice}</b></option>)
+        isLoad&& WeaponsList.map(weapon=>createPortal(<option key={weapon.id} value={weapon.name}>{weapon.name} D{weapon.selectDice}</option>,document.getElementById(`${props.id}${weapon.damageType}`)))
       }
-      </select>
-    </div>
+    </select>
+    <button onClick={()=>props.onClickSuprWeaponHandler(props.id)} type="button"><img className="imgSvgSupr" src="https://icons.getbootstrap.com/assets/icons/trash-fill.svg" alt="plus" /></button>
+  </div>
+
   )
 }

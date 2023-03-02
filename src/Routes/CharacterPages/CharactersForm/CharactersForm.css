@@ -55,3 +55,61 @@
 .FormCharacterWeapons{
   grid-column: 1/3;
 }
+
+.characterSelectWeaponContainer{
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.characterSelectWeapon{
+  width: 70%;
+  height: 45px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+}
+.characterSelectWeapon>optgroup{
+  font-family: sans-serif;
+}
+
+.characterSelectWeaponContainer>button{
+  background-color: transparent;
+  border: solid red 1px;
+  border-radius: 5px;
+  margin-left: 25px;
+  width: 45px;
+}
+.characterSelectWeaponContainer>button:hover{
+  background-color: rgba(148, 27, 27, 0.733);
+}
+
+.divBtnAddWeaponSelect{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  width: 100%;
+}
+.divBtnAddWeaponSelect>button{
+  background-color: transparent;
+  border: solid green 1px;
+  color: green;
+  height: 55px;
+  width: 180px;
+  border-radius: 10px;
+  font-size: 25px;
+  padding: 8px;
+}
+.divBtnAddWeaponSelect>button:hover{
+  background-color: green;
+  color: white;
+}
+
+.hrformCharactere{
+  grid-column: 1/3;
+  width: 100%;
+  border-top: 1px;
+}

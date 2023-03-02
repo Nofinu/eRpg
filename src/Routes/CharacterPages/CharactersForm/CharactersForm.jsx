@@ -26,7 +26,8 @@ export const CharactersForm=()=>{
   const [totalStats,setTotalStats]=useState(0)
   const [statusButton,setStatusButton]=useState(true)
   const [selectedClassPoint,setSelectedClassPoint]=useState(0)
-  const [weaponsTake,setWeaponsTake]=useState([1,2])
+  const [selectWeapon,setSelectWeapon]=useState([])
+  const [compteur,setCompteur]=useState(1)
 
 
 const ChangeValueStatHandler=(type,id)=>{
@@ -49,23 +50,43 @@ const onChangeSelectorHandler=(e)=>{
   setSelectedClassPoint(+classSelected.classPoint)
 }
 
-  const onChangeHandler=async(e)=>{
-    try{
-      const response =await axios.get(e.target.value,)
+const onChangeHandler=async(e)=>{
+  try{
+    const response =await axios.get(e.target.value,)
 
-      if(response.status === 200){
-        setImgUrl(e.target.value)
-      }
-      else{
-        throw new Error ("wrong Url")
-      }
+    if(response.status === 200){
+      setImgUrl(e.target.value)
     }
-
-    catch(error){
-      setImgUrl(DefaultUrl)
-      console.log(error.message)
+    else{
+      throw new Error ("wrong Url")
     }
   }
+
+  catch(error){
+    setImgUrl(DefaultUrl)
+    console.log(error.message)
+  }
+}
+
+const onClickAddWeaponHandler=()=>{
+  const tmpArray=[...selectWeapon]
+  tmpArray.push(compteur)
+  setCompteur(compteur+1)
+  setSelectWeapon(tmpArray)
+  //recuperation des value du select
+  // for(let key of weaponsTake){
+  //   const elem = document.getElementById(`select${key}`).value
+  //   console.log(elem)
+  // }
+}
+
+const onClickSuprWeaponHandler=(id)=>{
+  const indexFound = selectWeapon.indexOf(id)
+  let tmpArray = [...selectWeapon]
+  tmpArray.splice(indexFound,1)
+  setSelectWeapon(tmpArray)
+
+}
 
   useEffect(()=>{
     dispatch(FetchCharClass())
@@ -83,17 +104,13 @@ const onChangeSelectorHandler=(e)=>{
   else{
     setStatusButton(false)
   }
-
   },[CharacterStats,totalStats,dispatch,selectedClassPoint])
-
-// console.log(selectedClassPoint)
-// console.log(charaClasses)
 
   return(
     <form className="FormCharacters">
       <div className="FormCharactersHeader">
         <h2>Add</h2>
-        <hr />
+        <hr className="hrformCharactere"/>
       </div>
       <div className="FormCharactersDivImg">
         <img src={imgUrl} alt="profilPic" />
@@ -115,6 +132,7 @@ const onChangeSelectorHandler=(e)=>{
         <label htmlFor="avatarUrl">Avatar Url :</label>
         <input type="text" id="avatarUrl" onChange={onChangeHandler}/>
       </div>
+      <hr className="hrformCharactere"/>
       <div className="FormCharacterStats">
         <div className="FormCharacterStatsCounter">
           {
@@ -123,12 +141,16 @@ const onChangeSelectorHandler=(e)=>{
         </div>
         <p>Stat points left : <b>{selectedClassPoint - totalStats}</b></p>
       </div>
+      <hr className="hrformCharactere"/>
       <div className="FormCharacterWeapons">
         {
-          weaponsTake&& weaponsTake.map(weapon=><FormSelectWeapons key={weapon} id={weapon}/>)
+          selectWeapon&& selectWeapon.map(weapon=><FormSelectWeapons onClickSuprWeaponHandler={onClickSuprWeaponHandler} key={weapon} id={weapon}/>)
         }
-
+        <div className="divBtnAddWeaponSelect">
+          <button type="button" onClick={onClickAddWeaponHandler}>Add a Weapon</button>
+        </div>
       </div>
+      <hr className="hrformCharactere"/>
     </form>
   )
 }
