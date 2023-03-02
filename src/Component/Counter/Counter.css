@@ -1,0 +1,70 @@
+.CounterContainer{
+  background-color: rgb(20, 20, 20);
+  width:13.5%;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.CounterContainer>h4{
+  text-align: center;
+  margin: 10px 0 5px 0;
+}
+
+.CounterContainerStatDisplay{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: auto;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+}
+
+.CounterContainerStatDisplayValue{
+  text-align: center;
+  position: absolute;
+  text-align: center;
+  color: white;
+}
+
+.CounterContainerButton{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 110px;
+  width: 100%;
+  align-items: center;
+  margin: auto;
+  align-items: self-end;
+}
+
+.CounterContainerButton>button{
+  height: 35px;
+  width: 35px;
+  border: none;
+  border-radius: 100%;
+}
+
+.STR{
+  background-color: rgb(105, 7, 7);
+}
+.DEX{
+  background-color: rgb(6, 94, 6);
+}
+.CON{
+  background-color: rgb(83, 4, 4) ;
+}
+.WIS{
+  background-color: rgb(78, 8, 99);
+}
+.INT{
+  background-color: rgb(16, 66, 173);
+}
+.CHA{
+  background-color: rgb(175, 57, 77);
+}
+
+.desactivated{
+  background-color: rgba(209, 209, 209, 0.651);
+}

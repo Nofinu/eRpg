@@ -14,7 +14,7 @@ export const AddCharaClass = createAsyncThunk(
         },
         body: JSON.stringify(charaClasseValue)
       })
-
+      console.log(response)
       if(!response.ok){
         throw new Error("Error when adding a CharaClasse")
       }

@@ -1,4 +1,4 @@
-.CharaClassContainer{
+.CharacterContainer{
   background-color: black;
   width: 50%;
   margin: 25px auto;
@@ -8,28 +8,20 @@
   color: white;
   padding: 15px;
 }
-.CharaClassContainer>hr{
+.CharacterContainer>hr{
   width: 100%;
 }
-.CharaClassContainerHeader{
+.CharacterContainerHeader{
   display: flex;
   flex-direction: row;
   justify-content: space-between  ;
   align-items: center;
 }
-.CharaClassContainerHeader>h2{
+.CharacterContainerHeader>h2{
   margin: 5px 0 3px 0;
 }
-
-.LinkCharaClasses{
+.LinkCharacters{
   text-decoration: none;
   color: white;
   margin-right: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border: solid white 1px;
-  padding: 4px;
-  border-radius: 5px;
 }

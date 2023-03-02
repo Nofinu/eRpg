@@ -11,6 +11,7 @@ export const WeaponsPage=()=>{
   const dispatch=useDispatch()
 
   const weapons = useSelector(state=>state.weapons.weapons)
+  const user = useSelector(state=>state.auth.user)
 
 
   useEffect(()=>{
@@ -21,7 +22,9 @@ export const WeaponsPage=()=>{
     <div className="containerWeapons">
       <div className="headerContainerWeapon">
         <h2>Weapons</h2>
-        <Link className="LinkWeapons" to="/weapons/weaponsform?mode=Add"><img className="imgSvg" src="https://icons.getbootstrap.com/assets/icons/plus-circle.svg" alt="plus" /> Add</Link>
+        {
+        user&& <Link className="LinkWeapons" to="/weapons/weaponsform?mode=Add"><img className="imgSvg" src="https://icons.getbootstrap.com/assets/icons/plus-circle.svg" alt="plus" /> Add</Link>
+        }
       </div>
       <hr />
       {

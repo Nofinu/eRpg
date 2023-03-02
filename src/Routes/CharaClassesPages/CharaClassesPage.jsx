@@ -9,18 +9,19 @@ export const CharaClassesPage=()=>{
 
   const dispatch=useDispatch()
   const CharaClasses = useSelector(state=>state.charaClasses.charaClasses)
+  const user=useSelector(state=>state.auth.user)
 
   useEffect(()=>{
     dispatch(FetchCharClass())
   },[dispatch])
 
-  //ajouter la gestion du form edit et du form supr 
-
   return(
     <div className="CharaClassContainer">
       <div className="CharaClassContainerHeader">
         <h2>Classes</h2>
-        <Link className="LinkCharaClasses" to="/characlasses/Add?mode=Add"><img className="imgSvg" src="https://icons.getbootstrap.com/assets/icons/plus-circle.svg" alt="plus" />  Add</Link>
+        {
+          user && <Link className="LinkCharaClasses" to="/characlasses/Add?mode=Add"><img className="imgSvg" src="https://icons.getbootstrap.com/assets/icons/plus-circle.svg" alt="plus" />  Add</Link>
+        }
       </div>
       <hr />
       {

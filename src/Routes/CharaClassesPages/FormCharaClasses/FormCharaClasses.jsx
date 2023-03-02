@@ -17,13 +17,15 @@ export const FormCharaClasses=()=>{
 
   const hitDiceRef=useRef()
   const nameRef=useRef()
+  const ClassPointRef = useRef()
 
   const onSubmitHandler=async (e)=>{
     e.preventDefault()
 
     const CharaClasse={
       name: nameRef.current.value,
-      hitDice: hitDiceRef.current.value
+      hitDice: hitDiceRef.current.value,
+      classPoint: ClassPointRef.current.value
     }
     
     if(mode==="Add"){
@@ -54,6 +56,9 @@ export const FormCharaClasses=()=>{
         <option value="12">D12</option>
         <option value="20">D20</option>
       </select>
+
+      <label htmlFor="ClassePoints">Class Points :</label>
+      <input type="number" name="ClassePoints" id="ClassePoints" ref={ClassPointRef}/>
       <button>Send</button>
     </form>
   )
