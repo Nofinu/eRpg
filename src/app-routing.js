@@ -4,6 +4,7 @@ import ProtectedRoute from "./Component/ProtectedRoute";
 import { LogPage } from "./Routes/Auth/LogPage";
 import { CharaClassesPage } from "./Routes/CharaClassesPages/CharaClassesPage";
 import { FormCharaClasses } from "./Routes/CharaClassesPages/FormCharaClasses/FormCharaClasses";
+import { CharactersPage } from "./Routes/CharacterPages/CharactersPage";
 import { ErrorPage } from "./Routes/ErrorPage/ErrorPage";
 import { HomePage } from "./Routes/HomePage/HomePage";
 import { FormWeapons } from "./Routes/WeaponsPage/FormAddWeapons/FormWeapons";
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path:"/characlasses/:id",
         element:<ProtectedRoute><FormCharaClasses/></ProtectedRoute>
+      },
+      {
+        path:"/characters",
+        element:<ProtectedRoute><CharactersPage/></ProtectedRoute>
       }
     ]
   }

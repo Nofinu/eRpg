@@ -5,9 +5,7 @@ import "./CharaClassesDisplay.css"
 
 export const CharaClassesDisplay =(props)=>{
 
-  const CharaClasses = useSelector(state=>state.charaClasses.charaClasses)
-  const CharaClasseTarget = CharaClasses.find(charaClasse=>charaClasse.id === props.id)
-
+  const CharaClasseTarget  = useSelector(state=>state.charaClasses.charaClasses).find(charaClasse=>charaClasse.id === props.id)
 
   return(
     <div className="divCharaClasseDisplay">

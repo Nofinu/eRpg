@@ -4,8 +4,7 @@ import "./WeaponsDisplay.css"
 
 export const WeaponsDisplay =(props)=>{
 
-  const weapons = useSelector(state=>state.weapons.weapons)
-  const weaponTarget = weapons.find(weapon=>weapon.id === props.id)
+  const weaponTarget = useSelector(state=>state.weapons.weapons).find(weapon=>weapon.id === props.id)
 
   return(
     <div className={`divWeaponDisplay ${weaponTarget.damageType}`}>
