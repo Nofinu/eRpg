@@ -1,0 +1,42 @@
+
+.divDisplayCharacter{
+  border: solid rgba(102, 18, 158, 0.705) 1px;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.divDisplayCharacter>hr{
+  border-top: 1px;
+}
+.divDisplayCharacter>div>h2{
+  margin: 5px 0 5px 0;
+}
+.divDisplayCharacterInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 15px;
+}
+.divDisplayCharacterInfo>table{
+  margin-right: 35px;
+}
+
+.imgCharacterDisplay{
+  height: 150px;
+  border-radius: 100%;
+}
+
+.LinkCharacterDIsplay{
+  text-decoration: none;
+  padding: 5px;
+  margin-left : 15px;
+}
+
+.DisplayCharacterHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 15px;
+  margin-left: 15px;
+}

@@ -1,16 +1,19 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import DefaultUrl from "../../../asset/img/unknown_character.jpeg"
 import { Counter } from "../../../Component/Counter/Counter"
 import { FetchCharClass } from "../../CharaClassesPages/CharaClasseSlice"
 import { FetchWeapons } from "../../WeaponsPage/WeaponSlice"
+import { AddCharacter } from "../CharacterSlice"
 import "./CharactersForm.css"
 import { FormSelectWeapons } from "./FormSelectWeapons"
 
 export const CharactersForm=()=>{
 
   const dispatch=useDispatch()
+  const navigate = useNavigate()
 
   const charaClasses = useSelector(state=>state.charaClasses.charaClasses)
 
@@ -29,6 +32,10 @@ export const CharactersForm=()=>{
   const [selectWeapon,setSelectWeapon]=useState([])
   const [compteur,setCompteur]=useState(1)
 
+const nameRef=useRef()
+const classRef = useRef()
+const baseACRef=useRef()
+const avatarUrlRef=useRef()
 
 const ChangeValueStatHandler=(type,id)=>{
   let statEdit= CharacterStats.find(stat=>stat.id === id)
@@ -45,15 +52,13 @@ const ChangeValueStatHandler=(type,id)=>{
 }
 
 const onChangeSelectorHandler=(e)=>{
-  const classSelected = charaClasses.find(charaClass => charaClass.name === e.target.value)
-  console.log(classSelected)
+  const classSelected = charaClasses.find(charaClass => charaClass.id === e.target.value)
   setSelectedClassPoint(+classSelected.classPoint)
 }
 
 const onChangeHandler=async(e)=>{
   try{
     const response =await axios.get(e.target.value,)
-
     if(response.status === 200){
       setImgUrl(e.target.value)
     }
@@ -61,7 +66,6 @@ const onChangeHandler=async(e)=>{
       throw new Error ("wrong Url")
     }
   }
-
   catch(error){
     setImgUrl(DefaultUrl)
     console.log(error.message)
@@ -73,20 +77,46 @@ const onClickAddWeaponHandler=()=>{
   tmpArray.push(compteur)
   setCompteur(compteur+1)
   setSelectWeapon(tmpArray)
-  //recuperation des value du select
-  // for(let key of weaponsTake){
-  //   const elem = document.getElementById(`select${key}`).value
-  //   console.log(elem)
-  // }
 }
-
 const onClickSuprWeaponHandler=(id)=>{
   const indexFound = selectWeapon.indexOf(id)
   let tmpArray = [...selectWeapon]
   tmpArray.splice(indexFound,1)
   setSelectWeapon(tmpArray)
-
 }
+
+const onFromSubmitHandler=(e)=>{
+  e.preventDefault()
+
+  const classSelect = classRef.current.value
+
+  let maxHP = Math.ceil((CharacterStats.find(stat=>stat.name === "CON").value)/2)
+  const currentHP = maxHP += +charaClasses.find(clas => clas.id === classSelect).hitDice
+
+  let characterWeaponListId =[]
+  for(let key of selectWeapon){
+    characterWeaponListId.push(document.getElementById(`select${key}`).value)
+  }
+
+  const Character={
+    name: nameRef.current.value,
+    classId: classSelect,
+    baseAC: +baseACRef.current.value,
+    finalAC: +baseACRef.current.value + Math.ceil(CharacterStats.find(stat=>stat.name === "DEX").value/2),
+    avatarUrl : avatarUrlRef.current.value,
+    stats: [...CharacterStats],
+    unusedStatPoints: selectedClassPoint-totalStats,
+    characterWeaponListId,
+    currentHP,
+    maxHP,
+    currentXP: 0,
+    currentLevel: 1
+  }
+
+  dispatch(AddCharacter(Character))
+  navigate("/characters")
+}
+
 
   useEffect(()=>{
     dispatch(FetchCharClass())
@@ -107,7 +137,7 @@ const onClickSuprWeaponHandler=(id)=>{
   },[CharacterStats,totalStats,dispatch,selectedClassPoint])
 
   return(
-    <form className="FormCharacters">
+    <form className="FormCharacters" onSubmit={onFromSubmitHandler}>
       <div className="FormCharactersHeader">
         <h2>Add</h2>
         <hr className="hrformCharactere"/>
@@ -117,20 +147,20 @@ const onClickSuprWeaponHandler=(id)=>{
       </div>
       <div className="FormCharactersDivInputs">
         <label htmlFor="name">Name :</label>
-        <input type="text" id="name"/>
+        <input type="text" id="name" ref={nameRef} required/>
 
-        <label htmlFor="Classes">Classe :</label>
-        <select name="Classes" id="Classes" onChange={onChangeSelectorHandler}>
+        <label htmlFor="Classes">Class :</label>
+        <select name="Classes" id="Classes" onChange={onChangeSelectorHandler} required ref={classRef}>
           <option value="">Select a class</option>
           {
-            charaClasses&& charaClasses.map(charaClasse=><option key={charaClasse.id} value={charaClasse.name}>{charaClasse.name}</option>)
+            charaClasses&& charaClasses.map(charaClasse=><option key={charaClasse.id} value={charaClasse.id}>{charaClasse.name}</option>)
           }
         </select>
         <label htmlFor="baseAc">Base AC :</label>
-        <input type="number" id="baseAc"/>
+        <input type="number" id="baseAc" ref={baseACRef} required/>
 
         <label htmlFor="avatarUrl">Avatar Url :</label>
-        <input type="text" id="avatarUrl" onChange={onChangeHandler}/>
+        <input type="text" id="avatarUrl" onChange={onChangeHandler} ref={avatarUrlRef}/>
       </div>
       <hr className="hrformCharactere"/>
       <div className="FormCharacterStats">
@@ -151,6 +181,7 @@ const onClickSuprWeaponHandler=(id)=>{
         </div>
       </div>
       <hr className="hrformCharactere"/>
+      <button>Send</button>
     </form>
   )
 }
