@@ -59,7 +59,9 @@ export const FormCharaClasses=()=>{
 
       <label htmlFor="ClassePoints">Class Points :</label>
       <input type="number" name="ClassePoints" id="ClassePoints" ref={ClassPointRef}/>
-      <button>Send</button>
+      <div className="FormCharaClassBtnContainer">
+        <button>Send</button>
+      </div>
     </form>
   )
 }

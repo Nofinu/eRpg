@@ -17,3 +17,22 @@
   display: flex;
   flex-direction: row-reverse;
 }
+.FormCharaClassBtnContainer{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.FormCharaClassBtnContainer>button{
+  margin-top: 10px;
+  height: 30px;
+  width: 30%;
+  min-width: 80px;
+  background-color: transparent;
+  color: rgb(21, 124, 21);
+  border-radius: 5px;
+  border: solid rgb(21, 124, 21) 1px;
+}
+.FormCharaClassBtnContainer>button:hover{
+  background-color: rgb(20, 83, 20);
+  color: white;
+}

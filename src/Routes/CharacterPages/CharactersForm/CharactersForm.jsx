@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import DefaultUrl from "../../../asset/img/unknown_character.jpeg"
 import { Counter } from "../../../Component/Counter/Counter"
 import { FetchCharClass } from "../../CharaClassesPages/CharaClasseSlice"
@@ -14,6 +14,12 @@ export const CharactersForm=()=>{
 
   const dispatch=useDispatch()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+
+  const mode = searchParams.get('mode')
+  const { id } = useParams()
+
+  console.log(id,mode)
 
   const charaClasses = useSelector(state=>state.charaClasses.charaClasses)
 

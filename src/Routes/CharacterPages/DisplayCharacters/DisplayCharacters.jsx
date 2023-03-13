@@ -16,8 +16,8 @@ export const DisplayCharacters =(props)=>{
         <div>
           {
               user&&<>
-                <Link className="LinkCharacterDIsplay EditLink" to={`/weapons/${characterFound.id}?mode=Edit`}> <img className="imgSvgEdit" src="https://icons.getbootstrap.com/assets/icons/pencil-square.svg" alt="plus" /> Edit</Link>
-                <Link className="LinkCharacterDIsplay SuprLink" to={`/weapons/${characterFound.id}?mode=Supr`}> <img className="imgSvgSupr" src="https://icons.getbootstrap.com/assets/icons/trash-fill.svg" alt="plus" />Supr</Link>
+                <Link className="LinkCharacterDIsplay EditLink" to={`/characters/${characterFound.id}?mode=Edit`}> <img className="imgSvgEdit" src="https://icons.getbootstrap.com/assets/icons/pencil-square.svg" alt="plus" /> Edit</Link>
+                <Link className="LinkCharacterDIsplay SuprLink" to={`/characters/${characterFound.id}?mode=Supr`}> <img className="imgSvgSupr" src="https://icons.getbootstrap.com/assets/icons/trash-fill.svg" alt="plus" />Supr</Link>
               </>
             }
         </div>
