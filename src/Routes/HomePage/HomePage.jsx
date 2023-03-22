@@ -6,7 +6,7 @@ export const HomePage =()=>{
     <div className="containerHomePage">
       <h1>Home Page</h1>
       <hr/>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos porro, voluptatum quas repudiandae odio expedita iure excepturi magnam maiores dolores accusamus, culpa velit quod quos nostrum nihil, natus est? Omnis?</p>
+      <p>Bienvenu sur mon site de creation de personnage de JDR !</p>
     </div>
   )
 }

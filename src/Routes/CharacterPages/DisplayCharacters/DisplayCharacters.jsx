@@ -1,13 +1,21 @@
-import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import "./DisplayCharacters.css"
 import DefaultUrl from "../../../asset/img/unknown_character.jpeg"
+import { SuprCharacters } from "../CharacterSlice"
 
 
 export const DisplayCharacters =(props)=>{
 
+  const dispatch = useDispatch()
+
   const characterFound = useSelector(state=>state.characters.characters).find(character => character.id === props.id)
   const user = useSelector(state=>state.auth.user)
+
+  const SuprCharacterHandler=()=>{
+    if(window.confirm("voulez vous suprimer le personnage : " +characterFound.name)){
+      dispatch(SuprCharacters(characterFound.id))
+    }
+  }
 
   return(
     <div className="divDisplayCharacter">
@@ -16,8 +24,7 @@ export const DisplayCharacters =(props)=>{
         <div>
           {
               user&&<>
-                <Link className="LinkCharacterDIsplay EditLink" to={`/characters/${characterFound.id}?mode=Edit`}> <img className="imgSvgEdit" src="https://icons.getbootstrap.com/assets/icons/pencil-square.svg" alt="plus" /> Edit</Link>
-                <Link className="LinkCharacterDIsplay SuprLink" to={`/characters/${characterFound.id}?mode=Supr`}> <img className="imgSvgSupr" src="https://icons.getbootstrap.com/assets/icons/trash-fill.svg" alt="plus" />Supr</Link>
+                <button className="LinkCharacterDIsplay SuprBtn" onClick={SuprCharacterHandler}> <img className="imgSvgSupr" src="https://icons.getbootstrap.com/assets/icons/trash-fill.svg" alt="plus" />Supr</button>
               </>
             }
         </div>

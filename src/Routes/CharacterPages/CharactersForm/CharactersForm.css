@@ -113,3 +113,23 @@
   width: 100%;
   border-top: 1px;
 }
+
+.sendBtnContainer{
+  grid-column: 1/3;
+  display: flex;
+  justify-content: center;
+}
+
+.sendBtnContainer>button{
+  width: 25%;
+  height: 50px;
+  border:solid 1px rgb(41, 177, 41) ;
+  border-radius: 10px;
+  background-color: transparent;
+  color: rgb(41, 177, 41);
+  font-size: 25px;
+}
+.sendBtnContainer>button:hover{
+  background-color:rgb(41, 177, 41) ;
+  color: var(--white--);
+}

@@ -58,7 +58,7 @@ export const FormCharaClasses=()=>{
       </select>
 
       <label htmlFor="ClassePoints">Class Points :</label>
-      <input type="number" name="ClassePoints" id="ClassePoints" ref={ClassPointRef}/>
+      <input type="number" name="ClassePoints" id="ClassePoints" ref={ClassPointRef} defaultValue={mode==="Add"?"":CharaClasseTarget.classPoint} disabled={mode === "Supr"?true:false}/>
       <div className="FormCharaClassBtnContainer">
         <button>Send</button>
       </div>

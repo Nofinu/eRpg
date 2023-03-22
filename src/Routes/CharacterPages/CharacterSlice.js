@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, isAsyncThunkAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { UrlDb } from "../../AccesApi";
 
 
@@ -44,6 +44,21 @@ export const FetchCharacters = createAsyncThunk(
   }
 )
 
+export const SuprCharacters = createAsyncThunk(
+  "Characters/SuprCharacters",
+  async (id,{getState})=>{
+    const token = getState().auth.user.idToken
+    const response = await fetch(`${UrlDb}/characters/${id}.json?auth=${token}`,{
+      method:"DELETE"
+    })
+    if(!response.ok){
+      throw new Error("Error during the deletion of the weapon")
+    }
+
+    return id
+  }
+)
+
 const CharacterSlice = createSlice({
   name:"CharacterSlice",
   initialState:{
@@ -56,6 +71,12 @@ const CharacterSlice = createSlice({
   })
   builder.addCase(FetchCharacters.fulfilled,(state,action)=>{
     state.characters=[...action.payload].sort((a,b)=>a.name.localeCompare(b.name))
+  })
+  builder.addCase(SuprCharacters.fulfilled, (state, action) => {
+    const characterFound = state.characters.find(a => a.id === action.payload)
+    if (characterFound) {
+      state.characters = [...state.characters.filter(a => a !== characterFound)].sort((a,b)=>a.name.localeCompare(b.name))
+    }
   })
   }
 })

@@ -19,8 +19,6 @@ export const CharactersForm=()=>{
   const mode = searchParams.get('mode')
   const { id } = useParams()
 
-  console.log(id,mode)
-
   const charaClasses = useSelector(state=>state.charaClasses.charaClasses)
 
   const [imgUrl,setImgUrl]=useState(DefaultUrl)
@@ -145,7 +143,7 @@ const onFromSubmitHandler=(e)=>{
   return(
     <form className="FormCharacters" onSubmit={onFromSubmitHandler}>
       <div className="FormCharactersHeader">
-        <h2>Add</h2>
+        <h2>Create Character :</h2>
         <hr className="hrformCharactere"/>
       </div>
       <div className="FormCharactersDivImg">
@@ -187,7 +185,9 @@ const onFromSubmitHandler=(e)=>{
         </div>
       </div>
       <hr className="hrformCharactere"/>
-      <button>Send</button>
+      <div className="sendBtnContainer">
+        <button>Create Character</button>
+      </div>
     </form>
   )
 }
